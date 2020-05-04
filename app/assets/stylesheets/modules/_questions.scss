@@ -186,7 +186,7 @@ div.contents.row {
   }
   div.content_post {
     position: relative;
-    height: 400px;
+    height: 100px;
     color: #fff;
     background-size: cover;
     background-position: center center;
@@ -340,5 +340,18 @@ footer {
 
   .search-btn {
     width: 10%;
+  }
+}
+
+.lower-top{
+  height: 25x;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  &__left{
+
+  }
+  &__right{
+
   }
 }
