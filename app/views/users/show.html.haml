@@ -1,0 +1,8 @@
+.contents.row
+  %p
+    = @name
+    さんの投稿一覧
+  - @questions.each do |question|
+    .content_post
+      = simple_format(question.text)
+      %span.name= question.name

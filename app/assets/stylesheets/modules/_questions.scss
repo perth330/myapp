@@ -342,3 +342,19 @@ footer {
     width: 10%;
   }
 }
+
+.wrapper{
+}
+
+.lower-top{
+  display: flex;
+  height: 30px;
+  justify-content: space-around;
+  align-items: center;
+  &__lower-top_left{
+    width: 50%;
+  }
+  &__lower-top__right{
+    width: 50%;
+  }
+}

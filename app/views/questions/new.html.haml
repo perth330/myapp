@@ -1,0 +1,8 @@
+.contents.row
+  .container
+    = form_with(model: @question, local: true) do |form|
+      %h3
+        投稿する
+      = form.text_field :name, placeholder: "Nickname"
+      = form.text_area :text, placeholder: "text" , rows: "10"
+      = form.submit "SEND"

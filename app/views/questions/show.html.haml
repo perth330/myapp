@@ -1,0 +1,13 @@
+.contents.row
+  .content_post
+    .more
+      %ul.more_list
+        %li
+          = link_to '編集', "/questions/#{@question.id}/edit", method: :get
+        %li
+          = link_to '削除', "/questions/#{@question.id}", method: :delete
+    = simple_format(@question.text)
+    %span.name
+      %a{:href => "/users/#{@question.user.id}"}
+        %span 投稿者
+        = @question.user.name
