@@ -1,24 +1,152 @@
-# README
+# 概要
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+目的（内容）：メッセージ・スケジュールアプリ<br>
+ターゲット：不動産売買の営業<br>
+開発経緯：不動産売買の営業をしていく中で、取引件数が増加していくと、お客様の物件紹介であったり、案内や契約引き渡しの告知の管理やスケジュールの管理が難しくなります。<br>
+その際、お客様に対して、メッセージのやり取りの履歴やスケジュール表等があれば便利だと思い、作成をしたいと思いました。<br>
 
-Things you may want to cover:
+## 開発期間と平均作業時間
 
-* Ruby version
+・開発期間：約 1 週間
+・1 日あたりの平均作業時間：約 8 時間
 
-* System dependencies
+## 開発体制
 
-* Configuration
+・人数：1 名<br>
+・Trello によるタスク管理<br>
 
-* Database creation
+### 接続先情報
 
-* Database initialization
+URL http://54.248.52.91 <br>
 
-* How to run the test suite
+**テスト用アカウント等**<br>
+投稿者用<br>
+・メールアドレス: a@a.com<br>
+・パスワード: 123456789<br>  
 
-* Services (job queues, cache servers, search engines, etc.)
+コメント用<br>
+・メールアドレス名: b@b.com<br>
+・パスワード: 123456789<br>
 
-* Deployment instructions
+# 機能一覧
 
-* ...
+・ユーザー登録<br>
+・ログイン、ログアウト機能<br>
+・メッセージの投稿、編集、削除機能<br>
+・コメント機能<br>
+・カレンダーの投稿、編集、削除機能<br>
+
+# 動作確認方法
+
+- Chrome の最新版を利用してアクセスしてください。
+- ただしデプロイ等で接続できないタイミングもございます。その際は少し時間をおいてから接続してください。
+- 接続先およびログイン情報については、下記の通りです。
+- 同時に複数の方がログインしている場合に、ログインできない可能性があります。
+
+## メッセージ投稿方法は以下の手順で確認できます
+
+- テストアカウントでログイン → トップページの右上の「投稿する」ボタン押下 → メッセージを入力 → 「SEND」を押下
+
+## コメント投稿は以下の手順で確認できます
+
+- テストアカウントでログイン → トップページからメッセージの右上の詳細「ボタン」を押下 → コメントを入力 → 「SEND」を押下
+
+- 確認後、ログアウト処理をお願いします。
+
+## その他の機能は以下の手順で確認できます。
+
+- ユーザーマイページにてお気に入り一覧確認（サイドバー お気に入り一覧）
+- ユーザーマイページにて住所登録、削除（サイドバー お届け先住所登録）
+- ユーザーマイページにてクレジットカード登録、削除（サイドバー 支払い方法）
+- ユーザーマイページにて出品した商品の一覧確認（サイドバー 出品した商品 - 出品中・売却済）
+  <br>
+- 商品詳細ページにて出品者自身の商品の編集、削除
+- 商品詳細ページにて商品のコメント
+- 商品詳細ページにてお気に入り登録（ログイン中のみ）
+  <br>
+- 商品出品、編集時にカテゴリを選択
+  <br>
+- パンくず機能確認（ユーザーマイページ、商品詳細ページ、クレジットカード登録）
+
+# 使用技術
+
+## ◼︎ 言語
+
+### バックエンド
+
+Ruby 2.5.1
+
+### マークアップ言語
+
+HTML<br>
+CSS<br>
+
+### マークアップ記法
+
+haml<br>
+SCSS<br>
+
+## ◼︎ フレームワーク
+
+Ruby on Rails 5.2.3
+
+## ◼︎ データベース
+
+MySQL 5.6.47
+
+## ◼︎ インフラ
+
+AWS EC2<br>
+AWS S3
+
+## ◼︎ デプロイ
+
+Capistrano による自動デプロイ
+
+# bmarket DB 設計
+
+## users テーブル
+
+| Column           | Type   | Options                   |
+| ---------------- | ------ | ------------------------- |
+| name             | string | null: false               |
+| email            | string | null: false, unique: true |
+| password         | string | null: false               |
+
+
+### Association
+
+- has_many :comments
+- has_many :questions
+
+
+## quesitons テーブル
+
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| text        | string     | null: false       |
+| user        | references | foreign_key: true |
+
+### Association
+
+- has_many :comments
+
+## comments テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| text    | text       | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| question| references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :question
+- belongs_to :user
+
+## meetings テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| start_time       | datetime   | null: false                    |
