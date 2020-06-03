@@ -103,7 +103,7 @@ AWS S3
 
 Capistrano による自動デプロイ
 
-# bmarket DB 設計
+# DB 設計
 
 ## users テーブル
 
