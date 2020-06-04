@@ -1,7 +1,12 @@
 .lower-top
-  .lower-top_left
-    = link_to questions_path do
+  = link_to questions_path do
+    .lower-top__left
       メッセージ
-  .lower-top__right
+  -if user_signed_in?
     = link_to meetings_path do
-      スケジュール
+      .lower-top__right
+        スケジュール
+  -else 
+    = link_to "/" do
+      .lower-top__right
+        スケジュール

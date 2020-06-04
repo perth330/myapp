@@ -1,12 +1,12 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b 内容:
   = @meeting.name
 %p
-  %b Start time:
+  %b 開始時間:
   = @meeting.start_time
 
-= link_to 'Edit', edit_meeting_path(@meeting)
+= link_to '編集', edit_meeting_path(@meeting)
 \|
-= link_to 'Back', meetings_path
+= link_to '戻る', meetings_path

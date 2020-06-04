@@ -1,9 +1,0 @@
-<div class="contents row">
-  <p><%= @name %>さんの投稿一覧</p>
-
-  <% @questions.each do |question| %>
-    <div class="content_post" >
-      <%= simple_format(question.text) %>
-    </div>
-  <% end %>
-</div>
